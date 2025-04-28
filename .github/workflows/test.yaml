@@ -6,7 +6,7 @@ jobs:
     test:
         name: PHP ${{ matrix.php-version }} (${{ matrix.experimental && 'experimental' || 'full support' }})
 
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-22.04
 
         strategy:
             fail-fast: false
@@ -17,9 +17,12 @@ jobs:
                     - 7.3
                     - 7.4
                     - 8.0
+                    - 8.1
+                    - 8.2
+                    - 8.3
                 experimental: [false]
                 include:
-                    - php-version: 8.1
+                    - php-version: 8.4
                       experimental: true
 
         continue-on-error: ${{ matrix.experimental }}
@@ -35,7 +38,7 @@ jobs:
                   tools: composer:v2
 
             - name: Install Composer dependencies
-              uses: ramsey/composer-install@v1
+              uses: ramsey/composer-install@v3
               with:
                   composer-options: --prefer-dist
               continue-on-error: ${{ matrix.experimental }}
