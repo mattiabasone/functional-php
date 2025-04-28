@@ -21,16 +21,8 @@ class ErrorToExceptionTest extends AbstractTestCase
 {
     public function testErrorIsThrownAsException(): void
     {
-        if (PHP_VERSION_ID >= 80401) {
-            // As of PHP 8.4, trigger_error('...', E_USER_ERROR) is deprecated
-            // This means the actual error thrown is different from the one
-            // attempted
-            // See https://3v4l.org/MmFA6.
-            self::markTestSkipped('Only works with PHP <8.4 due to deprecated E_USER_ERROR');
-        }
-
         $origFn = function () {
-            \trigger_error('Some error', E_USER_ERROR);
+            \trigger_error('Some error', E_USER_DEPRECATED);
         };
 
         $fn = error_to_exception($origFn);
