@@ -3,16 +3,18 @@ name: Test
 on:
   pull_request:
     branches: ["main", "master"]
-    paths-ignore:
-      - "docs/**"
-      - "LICENSE"
-      - "README.md"
+    paths:
+      - "src/**"
+      - "tests/**"
+      - "composer.json"
+      - ".github/workflows/test.yaml"
   push:
     branches: ["main", "master"]
-    paths-ignore:
-      - "docs/**"
-      - "LICENSE"
-      - "README.md"
+    paths:
+      - "src/**"
+      - "tests/**"
+      - "composer.json"
+      - ".github/workflows/test.yaml"
 
 jobs:
     test:
@@ -32,15 +34,16 @@ jobs:
                     - 8.1
                     - 8.2
                     - 8.3
+                    - 8.4
                 experimental: [false]
                 include:
-                    - php-version: 8.4
+                    - php-version: 8.5
                       experimental: true
 
         continue-on-error: ${{ matrix.experimental }}
         steps:
             - name: Checkout
-              uses: actions/checkout@v2
+              uses: actions/checkout@v5
 
             - name: Install PHP with extensions
               uses: shivammathur/setup-php@v2
