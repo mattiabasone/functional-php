@@ -63,6 +63,7 @@ jobs:
                 composer require pcov/clobber
                 vendor/bin/pcov clobber
               continue-on-error: true
+              if: ${{ matrix.php-version == '7.1' }}
 
             - name: Run Tests
               run: composer tests
