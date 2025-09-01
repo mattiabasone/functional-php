@@ -71,3 +71,5 @@ jobs:
             - name: Check coding style
               run: composer coding-style
               continue-on-error: ${{ matrix.experimental }}
+              env:
+                PHP_CS_FIXER_IGNORE_ENV: 1
