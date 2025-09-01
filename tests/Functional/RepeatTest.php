@@ -49,7 +49,7 @@ class RepeatTest extends AbstractTestCase
 
         // See https://3v4l.org/Ms79G for message formats
         // See https://regex101.com/r/hTvW3o/1 for regex setup
-        if (\version_compare(PHPUnitVersion::id(), '9.0.0', '>=') >= 0) {
+        if (\version_compare(PHPUnitVersion::id(), '9.0.0') >= 0) {
             // PHPUnit 10 changed the wording of the exception message
             $this->expectExceptionMessageMatches(
                 '/(Functional\\\\{closure}' // PHP < 8.4
